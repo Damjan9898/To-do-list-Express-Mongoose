@@ -5,16 +5,28 @@
     </div>
 
     <div class="box">
-                <% for (let i = 0; i < newListItems.length; i++){ %>
-                    <div class="item">
-                        <input type="checkbox" name="checkbox" >
-                        <p><%= newListItems[i] %></p>
-                    </div>
-                <%}%>
+                <% newListItems.forEach((item)=>{ %>
+
+                    <form action="/delete" method="post">
+                        <div class="item">
+                            <input type="checkbox" name="checkbox" onchange="this.form.submit()" value="<%= item._id %>">
+                            <input type="hidden" id="custId" name="hiddenListName" value="<%= listTitle %>">
+                            <p><%= item.name %></p>
+                        </div>
+                    </form>
+
+                <% }) %>
             <form class="item" action="/" method="post">
                 <input type="text" name="item" placeholder="New Item" autocomplete="off">
-                <button type="submit" name="list" value=<%= listTitle %>>+</button>
+                <button type="submit" name="listButton" value=<%= listTitle %>>+</button>
             </form>
+    </div>
+
+    <div class="box">
+        <form class="item" action="/newList" method="post">
+            <input type="text" name="newListName" placeholder="Add New To-do list" autocomplete="off">
+            <button type="submit" name="newTodo">+</button>
+        </form>
     </div>
 
 

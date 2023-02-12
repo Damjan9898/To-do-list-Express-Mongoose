@@ -13,9 +13,18 @@
 
     <div class="nac_block">
         <nav>
-            <a href="/">Daily chores</a>
-
-            <a href="/work">Working</a>
+            <a href="/">Main List</a>
+            
+              <form action="/getList" method="post">
+                <select class="form-select" name="getListName" onchange="this.form.submit()">
+                    <option selected><p>Select Additional Lists</p></option>
+                    <% allListNames.forEach((listName)=>{ %>
+                        <option value="<%= listName %>" ><%= listName %></option>
+                    <% }) %>
+    
+                  </select>
+              </form>
+              
 
             <a href="/about">About the Project</a>
         </nav>
